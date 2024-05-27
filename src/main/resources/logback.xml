@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    # Console appender
+<!--    <appender name="STD_OUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5p %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    # Simple console appender
+    <appender name="STD_SIMPLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%thread] %msg%n</pattern>
+        </encoder>
+    </appender>
+    # File appender
+    <appender name="LOG_OUT" class="ch.qos.logback.core.FileAppender">
+        <file>out.log</file>
+        <append>true</append>
+        <encoder>
+<!--            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>-->
+            <pattern>%-4relative %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{35}  - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.baeldung.logback" level="INFO" />
+    <logger name="com.baeldung.logback.tests" level="WARN">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STD_SIMPLE" />
+        <appender-ref ref="LOG_OUT" />
+
+    </root>
+</configuration>
